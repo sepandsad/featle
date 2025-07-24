@@ -1,0 +1,4 @@
+flask
+musicbrainzngs
+requests
+gunicorn
