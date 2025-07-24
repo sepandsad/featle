@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Play Featle</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>🎧 Current Artist: {{ current }}</h2>
+    {% if history %}
+        <p>Chain: {{ ' → '.join(history) }}</p>
+    {% endif %}
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+    <!-- Floating Album Sidebar -->
+<div id="albumSidebar">
+  <div id="albumToggle" onclick="toggleAlbumSidebar()">🎵 Albums</div>
+  <div id="albumContent">
+    <h3>Albums</h3>
+    <div class="album-scroll-container">
+      {% for album in albums %}
+        <div class="album-card" onclick="loadTracks('{{ album.id }}', this)">
+          <img src="{{ album.image }}" alt="{{ album.name }}">
+          <div class="album-name">{{ album.name }}</div>
+          <ul class="tracklist"></ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+    <form method="post" action="/submit_song">
+        <label>Enter a song your artist is in:</label><br>
+        <input type="text" name="song" required><br><br>
+        <button type="submit">Submit Song</button>
+    </form>
+
+    <script>
+        function toggleAlbumSidebar() {
+  const content = document.getElementById("albumContent");
+  if (content.style.display === "none" || content.style.display === "") {
+    content.style.display = "block";
+  } else {
+    content.style.display = "none";
+  }
+}
+
+function loadTracks(albumId, cardElement) {
+  const tracklist = cardElement.querySelector(".tracklist");
+
+  // Toggle visibility if already loaded
+  if (tracklist.getAttribute("data-loaded") === "true") {
+    tracklist.style.display = (tracklist.style.display === "none") ? "block" : "none";
+    return;
+  }
+
+  // Hide all other tracklists
+  document.querySelectorAll(".tracklist").forEach(t => {
+    t.style.display = "none";
+    t.setAttribute("data-loaded", "false");
+  });
+
+  // Load tracks
+  tracklist.innerHTML = "Loading...";
+  tracklist.style.display = "block";
+
+  fetch(`/album_tracks?album_id=${albumId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        tracklist.innerHTML = `<li>${data.error}</li>`;
+        return;
+      }
+
+      tracklist.innerHTML = "";
+      for (const track of data.tracks) {
+        const li = document.createElement("li");
+        li.textContent = track;
+        tracklist.appendChild(li);
+      }
+      tracklist.setAttribute("data-loaded", "true");
+    });
+}
+
+
+    </script>
+</body>
+</html>

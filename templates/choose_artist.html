@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Choose Next Artist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>🎧 Current Artist: {{ current }}</h2>
+    <p>Song: {{ song }}</p>
+    <p>Chain: {{ ' → '.join(history) }}</p>
+
+    <form method="post" action="/turn">
+        <label>Select the next artist from this song:</label><br>
+        {% for option in options %}
+            <input type="radio" name="next" value="{{ option }}" required> {{ option }}<br>
+        {% endfor %}
+        <br><button type="submit">Continue</button>
+    </form>
+</body>
+</html>

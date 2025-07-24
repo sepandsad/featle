@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>You Win!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h1>🎉 You reached {{ end }}!</h1>
+    <p>Final Chain:</p>
+    <p>{{ ' → '.join(history) }}</p>
+    <a href="/">Play Again</a>
+</body>
+</html>
