@@ -1,3 +1,129 @@
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+.left-panel {
+  flex: 1.5; /* was too wide before; reduce from 2 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 60px 40px 0 60px; /* top, right, bottom, left */
+}
+
+
+
+
+.right-panel {
+  flex: 2.5;
+  padding: 60px 40px 60px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+
+.card {
+  background-color: #1c1c1c;
+  padding: 20px 30px 30px; /* reduced top padding */
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+
+.artist-info h2 {
+  font-size: 2rem;
+  margin-bottom: 5px; /* reduced from 15px */
+}
+
+
+.artist-info .chain {
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.artist-info .error {
+  color: #ff4d4f;
+  margin-bottom: 20px;
+}
+
+.artist-info input[type="text"] {
+  width: 95%;
+  padding: 12px 20px; /* reduce padding to match button height */
+  height: 20px;        /* match height to button */
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+
+.artist-info button {
+  background-color: #1db954;
+  border: none;
+  padding: 0 20px;
+  height: 50px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+
+.artist-info button:hover {
+  background-color: #1ed760;
+}
+
+.album-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.album-scroll-container {
+  height: 70vh; /* slightly taller, but not full screen */
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+
+
+
+.album-card {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.album-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.album-name {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+.tracklist {
+  display: none;
+  margin-top: 10px;
+  padding-left: 15px;
+  font-size: 0.95rem;
+}
+
 body.home {
   margin: 0;
   padding: 0;
