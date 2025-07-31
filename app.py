@@ -187,22 +187,27 @@ def submit_song():
     song = request.form['song']
     collaborators = game.get_song_artists(song)
 
+    token = get_spotify_token()
+    artist_id = get_spotify_artist_id(game.current_artist, token)
+    albums = get_spotify_artist_albums(artist_id, token) if artist_id else []
+
     if not collaborators:
         return render_template('play.html', current=game.current_artist, history=game.history,
-                               error=f"No artists found for '{song}'")
+                               error=f"No artists found for '{song}'", albums=albums)
 
     if game.current_artist not in collaborators:
         return render_template('play.html', current=game.current_artist, history=game.history,
-                               error=f"{game.current_artist} is not part of this song.")
+                               error=f"{game.current_artist} is not part of this song.", albums=albums)
 
     options = [a for a in collaborators if a != game.current_artist]
     if not options:
         return render_template('play.html', current=game.current_artist, history=game.history,
-                               error="No other collaborators found.")
+                               error="No other collaborators found.", albums=albums)
 
     game.pending_song = song
     return render_template('choose_artist.html', current=game.current_artist, history=game.history,
                            song=song, options=options)
+
 
 
 @app.route('/turn', methods=['POST'])

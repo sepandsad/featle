@@ -1,20 +1,48 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Featle</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Featle</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <h1>Featle 🎶</h1>
-    <form method="post" action="/start">
-        <label>Start Artist:</label><br>
-        <input type="text" name="start" required><br><br>
+<body class="home">
+  <div class="top-right-icons">
+  <button class="icon-button" id="settings-button">⚙️</button>
+  <button class="icon-button" id="stats-button">📊</button>
+  <button class="icon-button" id="close-button">❌</button>
+</div>
 
-        <label>End Artist:</label><br>
-        <input type="text" name="end" required><br><br>
 
-        <button type="submit">Start Game</button>
-    </form>
+
+  <div class="center-content">
+    <h1 class="title">Featle</h1>
+    <p class="subtitle">Connect artists through<br/>featured collaborations</p>
+    <form action="{{ url_for('start') }}" method="post" class="start-form">
+  <input type="text" name="start" placeholder="Start artist" required>
+  <input type="text" name="end" placeholder="End artist" required>
+  <button type="submit" class="start-button">START GAME</button>
+</form>
+
+
+
+  </div>
+  
+  <script>
+  document.getElementById('settings-button').addEventListener('click', function () {
+    window.location.href = '/settings';  // or open a modal
+  });
+
+  document.getElementById('stats-button').addEventListener('click', function () {
+    window.location.href = '/stats';  // or show stats modal
+  });
+
+  document.getElementById('close-button').addEventListener('click', function () {
+    window.location.href = '/';  // maybe just refresh or return home
+  });
+</script>
+
 </body>
 </html>

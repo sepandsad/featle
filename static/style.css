@@ -1,3 +1,97 @@
+body.home {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: url('/static/bg.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.center-content {
+  text-align: center;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 700;
+  color: #1DB954;
+  margin-bottom: 0.5em;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  color: #ccc;
+  margin-bottom: 2em;
+}
+
+.start-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.start-form input {
+  width: 300px;
+  max-width: 80%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.start-button {
+  width: 400px;
+  max-width: 90%;
+  padding: 14px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #1DB954;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.start-button:hover {
+  background-color: #1ed760;
+  transform: scale(1.03);
+}
+
+
+
+.top-right-icons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  color: #fff;
+}
+
 body {
     font-family: 'Segoe UI', Roboto, sans-serif;
     background-color: #121212;
